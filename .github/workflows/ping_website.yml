@@ -1,17 +1,17 @@
 ---
-- name: Ping Website
+name: Ping Website
 
-  on: 
-    push:
+on: 
+  push:
 
-  jobs: 
-    ping:
-      runs-on: ubuntu-latest
+jobs: 
+  ping:
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
 
-      - name: Ping website
-        run: ping https://tplanet.townway.com.tw
+    - name: Ping website
+      run: ping https://tplanet.townway.com.tw
 ...  

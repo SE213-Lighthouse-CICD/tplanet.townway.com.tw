@@ -1,0 +1,23 @@
+---
+ci:
+  collect:
+    numberOfRuns: 3
+    settings:
+      chromeFlags: --no-sandbox
+      emulatedFormFactor: desktop
+      throttling:
+        cpuSlowdownMultiplier: 4
+     
+      screenEmulation:
+        disabled: true
+    url: https://tplanet.townway.com.tw
+  assert:
+    assertions:
+      first-contentful-paint: error, {maxNumericValue: 3000}
+      first-meaning-paint: error
+      speed-index: error
+      interactive: error
+      total-blocking-time: error
+      largest-contentful-paint: warn
+      cumulative-layout-shift: info
+...    

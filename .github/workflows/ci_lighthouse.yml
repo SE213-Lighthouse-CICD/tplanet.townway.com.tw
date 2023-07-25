@@ -1,0 +1,43 @@
+---
+name: CI_Lighthouse
+on: [push]
+jobs:
+  lhci:
+    name: Lighthouse Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code     
+        uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: npm install, build   
+        run: |
+          npm install
+          npm run build
+      - name: run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v2
+        with: 
+          name: lighthouse-report
+          path: ./lighthouse-report
+  
+  process_report:
+    name: Process Lighthouse report
+    runs-on: ubuntu-latest
+    needs: lighthouse_test
+
+    steps:
+      - name: Download Lighthouse report
+        uses: actions/download-artifact@v2
+        with: 
+          name: lighthouse-report
+          path: /home/orihara/lhci/lighthouse-report
+
+      - name: Start Lighthouse CI Server
+        run: npm start
+...    

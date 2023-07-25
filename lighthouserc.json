@@ -1,0 +1,16 @@
+{
+  "name": "se213-lighthouse-ci-server",
+  "version": "1.0.0",
+  "description": "SE213 Lighthouse CI Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@lhci/server": "latest",
+    "sqlite3": "latest"
+  },
+  "devDependencies": {
+    "@lhci/cli": "latest"
+  }    
+}

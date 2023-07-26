@@ -17,7 +17,7 @@ jobs:
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli
-          lhci autorun --collect.staticDistDir=./static
+          lhci autorun --collect.staticDistDir=./
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 

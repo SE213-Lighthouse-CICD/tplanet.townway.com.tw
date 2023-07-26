@@ -17,7 +17,7 @@ jobs:
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli
-          lhci autorun --collect.url=http://localhost:9001/index.html --server.port=9001
+          lhci autorun --collect.url=http://tplanet.townway.com.tw
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 

@@ -7,7 +7,7 @@ createServer({
   storage: {
     storageMethod: 'sql',
     sqlDialect: 'sqlite',
-    sqlDatabasePath: '/home/orihara/lhci/lhci.db',
+    sqlDatabasePath: './lhci.db',
     dbConnection: sqlite.Database 
   },
 }).then(({port}) => console.log('LHCI listening on port', port));

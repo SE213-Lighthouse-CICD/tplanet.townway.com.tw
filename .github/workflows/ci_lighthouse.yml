@@ -35,6 +35,10 @@ jobs:
         with: 
           name: lighthouse-report
           path: /home/edward/lhci/lighthouse-report
+      - name: Install Lighthouse CI Server
+        run: |
+          npm install -g @lhci/server
+          npm install
 
       - name: Start Lighthouse CI Server
         run: npm start

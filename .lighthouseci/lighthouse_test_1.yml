@@ -11,6 +11,7 @@ ci:
       screenEmulation:
         disabled: true
     url: https://tplanet.townway.com.tw
+    staticDistDir: './'
   assert:
     assertions:
       first-contentful-paint: error, {maxNumericValue: 3000}

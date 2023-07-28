@@ -19,12 +19,20 @@ jobs:
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli
-          lhci run --collect.url=http://tplanet.townway.com.tw
+          lhci autorun --collect.url=http://tplanet.townway.com.tw
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 
           name: lighthouse-report
           path: ./lighthouse-report
+      - name: Run Lighthouse
+        run: npx lighthouse http://tplanet.townway.com.tw --output json --output-path=./lighthouse_report.json --chrome-flags="--headless"
+
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lighthouse-report
+          path: ./lighthouse_report.json
   
   process_report:
     name: Process Lighthouse report

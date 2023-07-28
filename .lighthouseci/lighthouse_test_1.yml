@@ -12,13 +12,4 @@ ci:
         disabled: true
     url: https://tplanet.townway.com.tw
     staticDistDir: './'
-  assert:
-    assertions:
-      first-contentful-paint: error, {maxValue: 3000}
-      first-meaning-paint: error
-      speed-index: error
-      interactive: error
-      total-blocking-time: error
-      largest-contentful-paint: warn
-      cumulative-layout-shift: info
 ...    

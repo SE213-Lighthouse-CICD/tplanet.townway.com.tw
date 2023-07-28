@@ -36,7 +36,7 @@ jobs:
         uses: actions/download-artifact@v2
         with: 
           name: lighthouse-report
-          path: /home/edward/lhci/lighthouse-report
+          path: /home/orihara/lhci/lighthouse-report
 
       - name: Start Lighthouse CI Server
         run: npm start

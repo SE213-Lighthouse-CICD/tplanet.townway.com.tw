@@ -20,6 +20,9 @@ jobs:
         run: |
           npm install -g @lhci/cli
           lhci autorun --collect.url=http://tplanet.townway.com.tw
+      - name: Generate Lighthouse report
+        if: ${{ always() }}
+        run: lhci upload      
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 

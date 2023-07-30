@@ -22,7 +22,7 @@ jobs:
           lhci autorun --collect.url=https://tplanet.townway.com.tw
       - name: Generate Lighthouse report
         if: ${{ always() }}
-        run: lhci upload --target=lhci --serverBaseUrl=http://192.168.1.115:44209 --token=ADMIN_TOKEN_EDWARD      
+        run: lhci upload --target=lhci --serverBaseUrl=http://192.168.1.115:35477 --token=ADMIN_TOKEN_EDWARD      
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 

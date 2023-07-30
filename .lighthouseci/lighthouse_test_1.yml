@@ -12,4 +12,10 @@ ci:
         disabled: true
     url: https://tplanet.townway.com.tw
     staticDistDir: './'
+  assert:
+  assertions:
+    first-contentful-paint: warn, {minScore: 0.1}
+    speed-index: warn, {minScore: 0.1}
+    largest-contentful-paint: warn, {minScore: 0.1}
+    cumulative-layout-shift: warn, {minScore: 0.1}
 ...    

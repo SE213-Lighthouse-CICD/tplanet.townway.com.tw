@@ -14,8 +14,6 @@ jobs:
           node-version: 16.x
       - name: npm install   
         run:  npm install
-      - name: npm update
-        run:  npm update  
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli

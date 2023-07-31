@@ -3,7 +3,7 @@ const sqlite = require('sqlite3');
 
 console.log('Starting server...');
 createServer({
-  port: process.env.PORT,
+  port: 9001,
   storage: {
     storageMethod: 'sql',
     sqlDialect: 'sqlite',

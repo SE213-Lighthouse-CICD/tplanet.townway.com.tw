@@ -1,7 +1,7 @@
 {
-  "name": "se213-lighthouse-ci-server",
+  "name": "SE213-Lighthouse CI Server",
   "version": "1.0.0",
-  "description": "SE213 Lighthouse CI Server",
+  "description": "SE213-Lighthouse CI Server",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

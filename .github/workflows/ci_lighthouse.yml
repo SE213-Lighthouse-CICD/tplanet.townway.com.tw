@@ -14,6 +14,8 @@ jobs:
           node-version: 16.x
       - name: npm install   
         run:  npm install
+      - name: Check Admin Token
+        run: echo ${{ secrets.ADMIN_TOKEN_EDWARD }}  
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli

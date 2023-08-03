@@ -46,7 +46,7 @@ ci:
     no-unsupported-elements-use: error 
     no-unused-css-rules: error 
     no-unused-javascript: error
-    pwa-fast-reliable: warn, {minScore: 0.1}  # PWA 測試指標：快速可靠
-    pwa-installable: warn, {minScore: 0.1}    # PWA 測試指標：可安裝
-    pwa-optimized: warn, {minScore: 0.1}     # PWA 測試指標：最佳化
+    pwa-fast-reliable: error  
+    pwa-installable: error   
+    pwa-optimized: error     
 ...  

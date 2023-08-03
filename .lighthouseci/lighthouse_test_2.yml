@@ -1,0 +1,22 @@
+ci:
+  collect:
+    numberOfRuns: 3
+    settings:
+      chromeFlags: --no-sandbox
+      emulatedFormFactor: desktop
+      throttling:
+        cpuSlowdownMultiplier: 4
+      screenEmulation:
+        disabled: true
+      onlyCategories: ['performance', 'pwa'] # 添加 'pwa' 類別
+    url: https://tplanet.townway.com.tw
+    staticDistDir: './'
+  assert:
+  assertions:
+    first-contentful-paint: warn, {minScore: 0.1}
+    speed-index: warn, {minScore: 0.1}
+    largest-contentful-paint: warn, {minScore: 0.1}
+    cumulative-layout-shift: warn, {minScore: 0.1}
+    pwa-fast-reliable: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標
+    pwa-installable: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標
+    pwa-optimized: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標

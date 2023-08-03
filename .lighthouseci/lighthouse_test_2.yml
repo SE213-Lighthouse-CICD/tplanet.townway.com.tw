@@ -7,9 +7,9 @@ ci:
       emulatedFormFactor: desktop
       throttling:
         cpuSlowdownMultiplier: 4
+     
       screenEmulation:
         disabled: true
-      onlyCategories: ['performance', 'pwa'] # 添加 'pwa' 類別
     url: https://tplanet.townway.com.tw
     staticDistDir: './'
   assert:
@@ -18,7 +18,35 @@ ci:
     speed-index: warn, {minScore: 0.1}
     largest-contentful-paint: warn, {minScore: 0.1}
     cumulative-layout-shift: warn, {minScore: 0.1}
-    pwa-fast-reliable: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標
-    pwa-installable: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標
-    pwa-optimized: warn, {minScore: 0.1} # 添加 PWA 數據的測試指標
-...
+    interactive: warn, {minScore: 0.1}
+    server-response-time: warn, {maxNumericValue: 500}
+    total-blocking-time: warn, {maxNumericValue: 100}
+    cumulative-layout-shift: warn, {maxNumericValue: 0.1}
+    color-contrast: error, {minScore: 0}
+    no-vulnerable-libraries: error
+    valid-source-maps: error
+    robots-txt: error
+    canonical: error
+    hreflang: error
+    font-size: warn, {maxNumericValue: 60}
+    link-text: warn, {minScore: 0.5}
+    managed-focus: error
+    heading-order: error
+    aria-allowed-attr: error
+    aria-required-attr: error
+    aria-roles: error
+    color-contrast: error
+    image-alt: error
+    meta-description: error
+    no-document-write: error
+    no-heading-less-than-three: error
+    no-multiple-main-elements: error
+    no-duplicate-id: error
+    no-access-key: error 
+    no-unsupported-elements-use: error 
+    no-unused-css-rules: error 
+    no-unused-javascript: error
+    pwa-fast-reliable: warn, {minScore: 0.1}  # PWA 測試指標：快速可靠
+    pwa-installable: warn, {minScore: 0.1}    # PWA 測試指標：可安裝
+    pwa-optimized: warn, {minScore: 0.1}     # PWA 測試指標：最佳化
+...  

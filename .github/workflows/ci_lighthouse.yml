@@ -15,14 +15,14 @@ jobs:
       - name: npm install   
         run:  npm install
       - name: Check Admin Token
-        run: echo ${{ secrets.ADMIN_TOKEN_EDWARD }}  
+        run: echo ${{ secrets.BUILD_TOKEN_EDWARD }}  
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli
           lhci autorun --collect.url=https://tplanet.townway.com.tw
       - name: Generate Lighthouse report
         if: ${{ always() }}
-        run: lhci upload --target=lhci --serverBaseUrl=http://111.251.181.239:9001/ --token=${{ secrets.ADMIN_TOKEN_EDWARD }}      
+        run: lhci upload --target=lhci --serverBaseUrl=http://111.251.181.239:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}      
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v2
         with: 

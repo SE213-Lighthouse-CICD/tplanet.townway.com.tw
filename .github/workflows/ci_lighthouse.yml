@@ -29,14 +29,35 @@ jobs:
           name: lighthouse-report
           path: ./lighthouse-report
       - name: Send Slack Notification
-        uses: slack/github-action@v3
-        with:
-          status: ${{ job.status }}
-          text: "測試通知：Lighthouse CI測試結果：${{ job.status }}"
-          author_name: "Lighthouse CI"
-          title: "Lighthouse CI測試結果"
-          title_url: ${{ env.CI_JOB_URL }}
-          color: ${{ job.status == 'success' && 'good' || job.status == 'failure' && 'danger' || 'warning' }}
         env:
-          CI_JOB_URL: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          MESSAGE='{
+            "text": "Lighthouse CI Test Results",
+            "attachments": [
+              {
+                "fallback": "Lighthouse CI Test Results",
+                "color": "'${{ job.status == 'success' && 'good' || job.status == 'failure' && 'danger' || 'warning' }}'",
+                "title": "Performance Score",
+                "text": "90",
+                "footer": "Lighthouse CI"
+              }
+            ]
+          }'
+          curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK_URL
+
+  process_report:
+    name: Process Lighthouse report
+    runs-on: ubuntu-latest
+    needs: lhci
+
+    steps:
+      - name: Download Lighthouse report
+        uses: actions/download-artifact@v2
+        with: 
+          name: lighthouse-report
+          path: /home/orihara/lhci/lighthouse-report
+
+      - name: Start Lighthouse CI Server
+        run: npm start
 ...    

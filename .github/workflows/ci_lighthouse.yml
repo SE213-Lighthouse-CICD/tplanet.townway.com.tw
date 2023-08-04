@@ -29,12 +29,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: lighthouse-report
-          path: ./lighthouse-report
+          path: /tplanet.townway.com.tw/lighthouse-report
       - name: Send Slack Notification
         continue-on-error: true
         uses: rtCamp/action-slack-notify@v2
         with:
-          entryPoint: '{"text": text: "Git push notification: A new push has been made to the repository."}'      
+          text: "Git push notification: A new push has been made to the repository."      
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 ...

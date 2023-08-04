@@ -23,14 +23,16 @@ jobs:
         if: ${{ success() }}
         uses: rtCamp/action-slack-notify@v2
         with:
-          entryPoint: '{"text": "Lighthouse CI Autorun Succeeded: ${{ env.CI_JOB_URL }}"}'
+          status: ${{ job.status }}      
+          text: "Lighthouse CI Autorun Succeeded: ${{ env.CI_JOB_URL }}"
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack Failure Notification
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         with:
-          entryPoint: '{"text": "Lighthouse CI Autorun Failed: ${{ env.CI_JOB_URL }}"}'
+          status: ${{ job.status }}      
+          text: "Lighthouse CI Autorun Failed: ${{ env.CI_JOB_URL }}"
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           

@@ -18,7 +18,22 @@ jobs:
         continue-on-error: true
         run: |
           npm install -g @lhci/cli
-          lhci autorun --collect.url=https://tplanet.townway.com.tw            
+          lhci autorun --collect.url=https://tplanet.townway.com.tw
+      - name: Send Slack Success Notification
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          entryPoint: '{"text": "Lighthouse CI Autorun Succeeded: ${{ env.CI_JOB_URL }}"}'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack Failure Notification
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          entryPoint: '{"text": "Lighthouse CI Autorun Failed: ${{ env.CI_JOB_URL }}"}'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
       - name: Generate Lighthouse report
         continue-on-error: true
         run: lhci upload --target=lhci --serverBaseUrl=http://111.251.181.239:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}      
@@ -28,12 +43,4 @@ jobs:
         with: 
           name: lighthouse-report
           path: ./lighthouse-report/report.html
-      - name: Send Slack Notification
-        if: ${{ always() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          status: ${{ job.status }}
-          text: "Lighthouse CI Report: ${{ env.CI_JOB_URL }}"
 ...

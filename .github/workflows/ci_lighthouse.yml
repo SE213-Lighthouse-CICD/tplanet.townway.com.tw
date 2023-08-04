@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: lighthouse-report
-          path: /tplanet.townway.com.tw/lighthouse-report
+          path: ./lighthouse-report/report.html
       - name: Send Slack Notification
         continue-on-error: true
         uses: rtCamp/action-slack-notify@v2

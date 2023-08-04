@@ -15,7 +15,7 @@ jobs:
       - name: npm install   
         run:  npm install
       - name: run Lighthouse CI
-        continue-on-error: true
+
         run: |
           npm install -g @lhci/cli
           lhci autorun --collect.url=https://tplanet.townway.com.tw

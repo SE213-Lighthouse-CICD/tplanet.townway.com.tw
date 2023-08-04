@@ -14,13 +14,11 @@ jobs:
           node-version: 16.x
       - name: npm install   
         run:  npm install
-      - name: Check Build Token
-        run: echo ${{ secrets.BUILD_TOKEN_EDWARD }}  
       - name: run Lighthouse CI
         continue-on-error: true
         run: |
           npm install -g @lhci/cli
-          lhci autorun --collect.url=https://tplanet.townway.com.tw --report=./lighthouse-report/report.html            
+          lhci autorun --collect.url=https://tplanet.townway.com.tw            
       - name: Generate Lighthouse report
         continue-on-error: true
         run: lhci upload --target=lhci --serverBaseUrl=http://111.251.181.239:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}      
@@ -31,10 +29,11 @@ jobs:
           name: lighthouse-report
           path: ./lighthouse-report/report.html
       - name: Send Slack Notification
-        continue-on-error: true
+        if: ${{ always() }}
         uses: rtCamp/action-slack-notify@v2
-        with:
-          text: "Git push notification: A new push has been made to the repository."      
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          text: "Lighthouse CI Report: ${{ env.CI_JOB_URL }}"
 ...

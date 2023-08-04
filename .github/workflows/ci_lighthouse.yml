@@ -20,7 +20,7 @@ jobs:
         continue-on-error: true
         run: |
           npm install -g @lhci/cli
-          lhci autorun --collect.url=https://tplanet.townway.com.tw
+          lhci autorun --collect.url=https://tplanet.townway.com.tw --report=./lighthouse-report/report.html            
       - name: Generate Lighthouse report
         continue-on-error: true
         run: lhci upload --target=lhci --serverBaseUrl=http://111.251.181.239:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}      

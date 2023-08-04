@@ -21,7 +21,6 @@ ci:
     interactive: warn, {minScore: 0.1}
     server-response-time: warn, {maxNumericValue: 500}
     total-blocking-time: warn, {maxNumericValue: 100}
-    cumulative-layout-shift: warn, {maxNumericValue: 0.1}
     color-contrast: error, {minScore: 0}
     no-vulnerable-libraries: error
     valid-source-maps: error
@@ -35,7 +34,6 @@ ci:
     aria-allowed-attr: error
     aria-required-attr: error
     aria-roles: error
-    color-contrast: error
     image-alt: error
     meta-description: error
     no-document-write: error

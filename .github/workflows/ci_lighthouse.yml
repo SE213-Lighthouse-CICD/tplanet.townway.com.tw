@@ -32,11 +32,11 @@ jobs:
           path: ./lighthouse-report
       - name: Send Slack Notification
         continue-on-error: true
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          status: ${{ job.status }}
-          fields: custom
-          custom_payload: '{"text": "Lighthouse CI Report: ${{ env.CI_JOB_URL }}", "color": "${{ job.status == '\''success'\'' && '\''good'\'' || job.status == '\''failure'\'' && '\''danger'\'' || job.status == '\''warning'\'' }}"}'
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "Lighthouse CI Report: ${{ env.CI_JOB_URL }}",
+            "username": "Lighthouse Bot",
+            "icon_emoji": ":rocket:",
+            "channel": "#運用-lighthouse-ci-進行網站性能測試"
+          }' https://hooks.slack.com/services/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
 ...

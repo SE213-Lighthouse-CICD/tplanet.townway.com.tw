@@ -38,9 +38,5 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: custom
-          custom_payload: |
-            {
-              "text": "Lighthouse CI Report: ${{ env.CI_JOB_URL }}",
-              "color": ${{ job.status == 'success' ? 'good' : (job.status == 'failure' ? 'danger' : 'warning') }}
-            }
+          custom_payload: '{"text": "Lighthouse CI Report: ${{ env.CI_JOB_URL }}", "color": "${{ job.status == '\''success'\'' && '\''good'\'' || job.status == '\''failure'\'' && '\''danger'\'' || '\''warning'\'' }}"}
 ...

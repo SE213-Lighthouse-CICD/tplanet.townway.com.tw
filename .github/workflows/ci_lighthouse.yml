@@ -41,6 +41,6 @@ jobs:
           custom_payload: |
             {
               "text": "Lighthouse CI Report: ${{ env.CI_JOB_URL }}",
-              "color": "${{ if eq(job.status, 'success') }}good{{ else if eq(job.status, 'failure') }}danger{{ else }}warning{{ endif }}"
+              "color": ${{ job.status == 'success' ? 'good' : (job.status == 'failure' ? 'danger' : 'warning') }}
             }
 ...

@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate Lighthouse report
         continue-on-error: true
-        run: lhci upload --target=lhci --serverBaseUrl=http://111.251.191.8:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}
+        run: lhci upload --target=lhci --serverBaseUrl=http://220.136.136.47:9001/ --token=${{ secrets.BUILD_TOKEN_EDWARD }}
 
       - name: Upload Lighthouse report
         continue-on-error: true
@@ -37,7 +37,4 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          status: ${{ job.status }}
-          text: "Lighthouse CI Report: ${{ env.CI_JOB_URL }}"
 ...
